@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block internal_css %}
+<style>
+    #teleport {
+        background-color: #339966;
+        background-image: None;
+    }
+    
+    .btn{
+        width: 75px;
+    }
+</style>
+{% endblock %}
+{% block body %}
+ <!-- Main hero unit for a primary marketing message or call to action -->
+ <div class="hero-unit">
+   <h1>Welcome.</h1>
+   <p>Somehow you have typed in this URL and here you are.  My name is Stephen Stack,
+   feel free to check out my page.  This page will be under development 'till the end of time
+   so who knows what might happen when you click on any of these links.  Anyways if you
+   want to get away from this place ASAP, click the button and you will be teleported
+   to a "random" place in the Web!</p>
+   <a id="teleport" class="btn btn-primary btn-large" href="teleport">Teleport &raquo;</a>
+   <img style="float:right;" src="{{ STATIC_URL }}assets/img/narwhal.png"/>
+ </div>
+
+ <!-- Example row of columns -->
+ <div class="row">
+ <div id="btns">
+  <table id='links-home'>
+  <tr>
+  <td><a class="btn btn-primary btn-large" href="profile">Profile &raquo;</a></td>
+  <td><span class="link-details">
+     Picture, personal stuff, resume, etc.
+     </span></td>
+  </tr>
+  
+  <tr>
+     <td><a class="btn btn-primary btn-large" href="projects">Projects &raquo;</a></td>
+     <td><span class="link-details">
+     Link to my BitBucket acct, source code, and other cool stuff.
+     </span></td>
+     </tr>
+     
+     <tr>
+     <td><a class="btn btn-primary btn-large" href="/">Hmm? &raquo;</a></td>
+     <td><span class="link-details">
+     Not sure what this will be, but will have some stuff that I approve of here.
+     </span></td>
+     </tr>
+     
+     <tr>
+     <td><a class="btn btn-primary btn-large" href="contact">Contact &raquo;</a></td>
+     <td><span class="link-details">
+     Email me!
+     </span></td>
+     </tr>
+  </table>  
+  </div>
+  </div>
+{% endblock %}

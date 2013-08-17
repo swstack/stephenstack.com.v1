@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block internal_css %}
+<style type="text/css">
+    #carousel-wrapper img{
+        margin: auto;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<h3>Take a look at what technologies are powering this site:</h3>
+<hr>
+<div id="myCarousel" class="carousel">
+  <!-- Carousel items -->
+  <div id="carousel-wrapper">
+  <div class="carousel-inner">
+    <div class="active item"><img src="{{ STATIC_URL }}assets/img/this_site/carousel/python.png"/></div>
+    <div class="item"><img src="{{ STATIC_URL }}assets/img/this_site/carousel/django.png"/></div>
+    <div class="item"><img src="{{ STATIC_URL }}assets/img/this_site/carousel/bootstrap.png"/></div>
+    <div class="item"><img src="{{ STATIC_URL }}assets/img/this_site/carousel/javascript.png"/></div>
+    <div class="item"><img src="{{ STATIC_URL }}assets/img/this_site/carousel/jquery.png"/></div>
+    <div class="item"><img src="{{ STATIC_URL }}assets/img/this_site/carousel/html5.png"/></div>
+    <div class="item"><img src="{{ STATIC_URL }}assets/img/this_site/carousel/css3.png"/></div>
+    <div class="item"><img src="{{ STATIC_URL }}assets/img/this_site/carousel/linux.png"/></div>
+    <div class="item"><img src="{{ STATIC_URL }}assets/img/this_site/carousel/centos.png"/></div>
+    <div class="item"><img src="{{ STATIC_URL }}assets/img/this_site/carousel/mysql.png"/></div>
+    <div class="item"><img src="{{ STATIC_URL }}assets/img/this_site/carousel/bitbucket.png"/></div>
+    <div class="item"><img src="{{ STATIC_URL }}assets/img/this_site/carousel/bluehost.png"/></div>
+  </div>
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+{% endblock %}
+
+{% block javascript %}
+$('.carousel').carousel({
+    interval: 2000
+})
+{% endblock %}

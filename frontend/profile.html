@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block internal_css %}
+<style type="text/css">
+	#portrait {
+	    float: right;
+	}
+	
+	#experience_wrapper td{
+	   float: top;
+	}
+	
+	#profile_table input {
+	   width: 150px;
+	}
+	
+	#picture_n_button {
+	   float: right;
+	   width: 170px;
+	   position: relative;
+	}
+	
+	#picture_n_button .btn {
+        background-color: #339966;
+        background-image: None;
+    }
+	
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="hero-unit">
+<h1>
+Stephen Stack
+</h1>
+<p>For the latest copy of my resume download it underneath my picture, otherwise
+check out some of the content below. </p>
+<div id="picture_n_button">
+	<img id="portrait" src="{{ STATIC_URL }}assets/img/portrait-1.jpg"/>
+	<a class="btn btn-primary btn-large" href="{{ STATIC_URL }}assets/other_files/stack_stephen_resume.doc">Download Resume</a>
+</div>
+</div>
+<div id="profile_table">
+<table>
+   <tr id="aboutme">
+       <td>
+       <form action="/handle_json_req?from=aboutme" method="POST">{% csrf_token %}
+       <input value="About Me" type="submit" class="btn btn-primary btn-large">
+       </form>
+       </td>
+       <td id="profile_table_content" rowspan="5">
+       {% if profile_data %}
+        <img id="profile_data" src="{{ STATIC_URL }}assets/img/profile/{{ profile_data }}"/>
+       {% endif %}
+       </td>
+   </tr>
+   <tr id="technical_skills">
+       <td>
+       <form action="/handle_json_req?from=techskills" method="POST">{% csrf_token %}
+       <input value="Technical Skills" type="submit" class="btn btn-primary btn-large">
+       </form>
+       </td>
+   </tr>
+   <tr id="education">
+       <td>
+       <form action="/handle_json_req?from=education" method="POST">{% csrf_token %}
+       <input value="Education" type="submit" class="btn btn-primary btn-large">
+       </form>
+       </td>
+   </tr>
+   <tr id="experience">
+       <div id="experience_wrapper">
+       <td>
+       <form action="/handle_json_req?from=experience" method="POST">{% csrf_token %}
+       <input value="Experience" type="submit" class="btn btn-primary btn-large">
+       </form>
+       </td>
+       </div>
+   </tr>
+   <tr><td><!-- intentional blank row --></td></tr>
+   
+</table>
+</div> 
+{% endblock %}
+
+<script language="Javascript">
+function xmlHttpPost(strURL) {
+    var xmlHttpReq = false;
+    // Mozilla/Safari
+    if (window.XMLHttpRequest) {
+        this.xmlHttpReq = new XMLHttpRequest();   
+    }
+    // IE
+    else if (window.ActiveXObject) {
+    	this.xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    console.log('---- ', xmlHttpReq)
+    this.xmlHttpReq.open('POST', strURL, true);
+    this.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    this.xmlHttpReq.onreadystatechange = function() {
+    	if (this.xmlHttpReq.readyState == 4) {
+    		updatepage(self.xmlHttpReq.responseText);
+    	}
+    }
+    this.xmlHttpReq.send(getquerystring());
+}
+
+function getquerystring() {
+    var form = document.forms['about_me_form'];
+    console.log(form)
+    console.log(form.word)
+    var word = form.word.value;
+    qstr = 'w=' + escape(word);  // NOTE: no '?' before querystring
+    return qstr;
+}
+
+function updatepage(str){
+    document.getElementById("result").innerHTML = str;
+}
+</script>
